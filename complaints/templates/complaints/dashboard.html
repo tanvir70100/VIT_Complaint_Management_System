@@ -1,0 +1,51 @@
+{% extends 'complaints/base.html' %}
+
+{% block content %}
+
+<h2 class="mb-4">Dashboard</h2>
+
+<div class="alert alert-primary">
+    Welcome, <strong>{{ request.user.username }}</strong>
+</div>
+
+<div class="row">
+
+    <div class="col-md-4">
+        <div class="card shadow text-center">
+            <div class="card-body">
+                <h5>Active Complaints</h5>
+                <h2>{{ active_count }}</h2>
+                <a href="{% url 'active_complaints' %}" class="btn btn-primary">
+                    View Active
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card shadow text-center">
+            <div class="card-body">
+                <h5>Previous Complaints</h5>
+                <h2>{{ previous_count }}</h2>
+                <a href="{% url 'previous_complaints' %}" class="btn btn-secondary">
+                    View Previous
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card shadow text-center">
+            <div class="card-body">
+                <h5>Assigned to Me</h5>
+                <h2>{{ reviewer_count }}</h2>
+                <a href="{% url 'active_complaints' %}" class="btn btn-success">
+                    Review
+                </a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
