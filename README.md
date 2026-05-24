@@ -19,7 +19,6 @@ The system allows students, faculty, and staff to lodge complaints, automaticall
 - Accused user privacy protection
 - Local SQLite database
 - Django admin panel
-- SonarQube-ready project structure
 
 ---
 
@@ -32,8 +31,6 @@ The system allows students, faculty, and staff to lodge complaints, automaticall
 | SQLite | Local database |
 | HTML | Page structure |
 | Bootstrap | Basic visual styling |
-| SonarQube | Code quality analysis |
-| Coverage.py | Test coverage report |
 
 ---
 
@@ -292,67 +289,6 @@ Run Django tests:
 python manage.py test
 ```
 
-Run tests with coverage:
-
-```bash
-coverage run manage.py test
-coverage report
-coverage xml
-```
-
-The `coverage.xml` file can be used for SonarQube analysis.
-
----
-
-## Running SonarQube Analysis
-
-Make sure SonarQube is running locally.
-
-Example using Docker:
-
-```bash
-docker run -d --name sonarqube -p 9000:9000 sonarqube:lts-community
-```
-
-Open:
-
-```text
-http://localhost:9000
-```
-
-Then run:
-
-```bash
-sonar-scanner
-```
-
-Make sure your project contains a `sonar-project.properties` file before running the scanner.
-
----
-
-## Example `sonar-project.properties`
-
-Create a file named:
-
-```text
-sonar-project.properties
-```
-
-Add this:
-
-```properties
-sonar.projectKey=vit-complaint-management
-sonar.projectName=VIT Complaint Management System
-sonar.projectVersion=1.0
-
-sonar.sources=.
-sonar.exclusions=**/migrations/**,**/venv/**,**/__pycache__/**,**/static/**,**/media/**,manage.py,config/settings.py,config/asgi.py,config/wsgi.py
-
-sonar.python.version=3.11
-sonar.sourceEncoding=UTF-8
-sonar.python.coverage.reportPaths=coverage.xml
-```
-
 ---
 
 ## Project Structure
@@ -391,7 +327,6 @@ vit_complaint_system/
 ├── db.sqlite3
 ├── manage.py
 ├── requirements.txt
-├── sonar-project.properties
 └── README.md
 ```
 
@@ -413,7 +348,6 @@ __pycache__/
 *.pyc
 db.sqlite3
 media/
-coverage.xml
 .coverage
 htmlcov/
 .env
@@ -472,19 +406,6 @@ Run tests:
 python manage.py test
 ```
 
-Generate coverage report:
-
-```bash
-coverage run manage.py test
-coverage xml
-```
-
-Run SonarQube scanner:
-
-```bash
-sonar-scanner
-```
-
 ---
 
 ## Academic Purpose
@@ -499,7 +420,6 @@ It demonstrates:
 - File upload handling
 - Complaint workflow automation
 - Audit history tracking
-- Basic software quality analysis using SonarQube
 
 ---
 
