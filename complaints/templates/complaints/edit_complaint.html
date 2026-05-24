@@ -1,0 +1,51 @@
+{% extends 'complaints/base.html' %}
+
+{% block content %}
+
+<div class="card shadow">
+    <div class="card-header bg-warning">
+        <h4>Edit Complaint</h4>
+    </div>
+
+    <div class="card-body">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div class="mb-3">
+                <label>Complaint Title</label>
+                {{ form.title }}
+            </div>
+
+            <div class="mb-3">
+                <label>Description</label>
+                {{ form.description }}
+            </div>
+
+            <div class="mb-3">
+                <label>Evidence</label>
+                {{ form.evidence }}
+
+                {% if complaint.evidence %}
+                    <p class="mt-2">
+                        Current evidence:
+                        <a href="{{ complaint.evidence.url }}" target="_blank">
+                            View current evidence
+                        </a>
+                    </p>
+                {% else %}
+                    <p class="mt-2 text-muted">No evidence uploaded.</p>
+                {% endif %}
+            </div>
+
+            <button type="submit" class="btn btn-warning">
+                Save Changes
+            </button>
+
+            <a href="{% url 'complaint_detail' complaint.id %}" class="btn btn-secondary">
+                Cancel
+            </a>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

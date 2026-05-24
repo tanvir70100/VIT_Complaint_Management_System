@@ -1,0 +1,41 @@
+{% extends 'complaints/base.html' %}
+
+{% block content %}
+
+<div class="card shadow">
+    <div class="card-header bg-primary text-white">
+        <h4>Lodge a Complaint</h4>
+    </div>
+
+    <div class="card-body">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div class="mb-3">
+                <label>Complaint Title</label>
+                {{ form.title }}
+            </div>
+
+            <div class="mb-3">
+                <label>Description</label>
+                {{ form.description }}
+            </div>
+
+            <div class="mb-3">
+                <label>Accused Person</label>
+                {{ form.accused }}
+            </div>
+
+            <div class="mb-3">
+                <label>Evidence Optional</label>
+                {{ form.evidence }}
+            </div>
+
+            <button type="submit" class="btn btn-primary">
+                Submit Complaint
+            </button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
